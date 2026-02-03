@@ -137,22 +137,9 @@ After installation, BMMD creates the following structure:
 
 The BMMD workflow integrates with standard BMAD phases:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                           BMAD-MD Full Lifecycle                                  │
-├────────────┬────────────┬────────────────────┬──────────────────┬────────────────┤
-│  Phase 1   │  Phase 2   │      Phase 3       │     Phase 4      │    Phase 5     │
-│  Discovery │ Definition │    Development     │    Delivery      │  Post-Market   │
-├────────────┼────────────┼────────────────────┼──────────────────┼────────────────┤
-│ Brainstorm │ PRD-MD     │ Story Reg Gate     │ DHF Assembly     │ PMS/PMCF       │
-│ Research   │ Risk Mgmt  │ Clinical Valid     │ Submission Pkg   │ PSUR           │
-│ Brief      │ Arch Review│ Story Cycles       │                  │ Vigilance      │
-│ Reg Scope  │ Usability  │ Usability Eval     │                  │ Perf Monitor   │
-│ SaMD Class │ IFU Draft  │                    │                  │ Feedback Loop  │
-├────────────┼────────────┼────────────────────┼──────────────────┼────────────────┤
-│    R1      │    R2      │        R3          │       R4         │   Continuous   │
-└────────────┴────────────┴────────────────────┴──────────────────┴────────────────┘
-```
+![BMAD-MD Workflow](docs/bmad-md-workflow-greenfield.png)
+
+The workflow covers the complete SaMD lifecycle from initial brainstorming through regulatory submission and post-market surveillance.
 
 ## CLI Commands
 
