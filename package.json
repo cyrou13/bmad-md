@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "bmad-md",
+  "version": "1.0.0",
+  "description": "BMAD Medical Device Module - SaMD regulatory compliance extension for BMAD Method",
+  "keywords": [
+    "bmad",
+    "medical-device",
+    "samd",
+    "iec-62304",
+    "iso-14971",
+    "fda",
+    "ce-marking",
+    "mdr",
+    "regulatory",
+    "compliance",
+    "healthcare",
+    "ai-agents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyrou13/bmad-md.git"
+  },
+  "license": "MIT",
+  "author": "Cyril",
+  "main": "src/module.yaml",
+  "bin": {
+    "bmad-md": "tools/bmad-md-npx-wrapper.js"
+  },
+  "files": [
+    "src/",
+    "tools/",
+    "README.md"
+  ],
+  "scripts": {
+    "install:check": "node tools/check-compatibility.js",
+    "test": "node test/test-module.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0",
+    "js-yaml": "^4.1.0",
+    "semver": "^7.6.3"
+  },
+  "peerDependencies": {
+    "bmad-method": ">=6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "bmad-method": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bmadModule": {
+    "code": "bmmd",
+    "name": "BMAD Medical Device",
+    "compatibility": "bmad-method >= 6.0.0",
+    "requires": ["bmm"],
+    "moduleDefinition": "src/module.yaml"
+  }
+}

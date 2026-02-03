@@ -1,0 +1,16 @@
+question_pattern,answer,agent_suggestion
+"regulatory","Use @regulatory-affairs (Dr. Régis) for classification, intended use, submissions, and regulatory strategy.",regulatory-affairs
+"classification","Use @regulatory-affairs /classify to determine SaMD classification (IMDRF, FDA, CE MDR, IEC 62304).",regulatory-affairs
+"intended use","Use @regulatory-affairs /intended-use to draft the Intended Use document.",regulatory-affairs
+"risk","Use @risk-manager (Dr. Hana) for ISO 14971 risk management, FMEA, and risk evaluation.",risk-manager
+"fmea","Use @risk-manager /fmea to conduct a Failure Mode and Effects Analysis.",risk-manager
+"clinical","Use @clinical-evaluator (Dr. Claire) for clinical evaluation, validation plans, and statistical protocols.",clinical-evaluator
+"validation","Use @clinical-evaluator /validation-plan to design a clinical validation study.",clinical-evaluator
+"traceability","Use @quality-manager /traceability to generate or verify the traceability matrix.",quality-manager
+"phase gate","Use @quality-manager /phase-gate to run an IEC 62304 phase gate checklist.",quality-manager
+"soup","Use @quality-manager /soup or @architect /soup-eval to evaluate SOUP dependencies.",quality-manager
+"cybersecurity","Use @cybersec-officer (SecureMax) for threat modeling, SBOM, and CVE audits.",cybersec-officer
+"release","Use @quality-manager /release-check to run the full release readiness checklist.",quality-manager
+"dhr","Use @regulatory-affairs /dhr to assemble the Design History Record.",regulatory-affairs
+"story check","Use @quality-manager /story-check before and after implementing a story.",quality-manager
+"ai validation","Use @clinical-evaluator /ai-validation for AI/ML specific validation (robustness, fairness, OOD).",clinical-evaluator

@@ -1,0 +1,207 @@
+# BMAD Medical Device Module Definition
+# Extension module for BMAD Method providing SaMD regulatory compliance
+
+module:
+  code: bmmd
+  name: BMAD Medical Device
+  version: 1.0.0
+  description: >
+    SaMD (Software as a Medical Device) regulatory compliance extension for BMAD Method.
+    Provides specialized agents, workflows, templates, and checklists for medical device
+    software development following IEC 62304, ISO 14971, FDA, and EU MDR requirements.
+
+  compatibility:
+    bmad-method: ">=6.0.0"
+
+  requires:
+    - bmm  # BMAD Method Module (core workflows)
+
+  author: Cyril
+  license: MIT
+  repository: https://github.com/cyrou13/bmad-md
+
+# Module components
+components:
+  agents:
+    - id: regulatory-affairs
+      name: Dr. Régis
+      file: agents/regulatory-affairs.md
+      description: Regulatory Affairs Specialist for FDA/CE/MDR compliance
+
+    - id: risk-manager
+      name: Dr. Hana
+      file: agents/risk-manager.md
+      description: Risk Manager for ISO 14971 hazard analysis and FMEA
+
+    - id: clinical-evaluator
+      name: Dr. Claire
+      file: agents/clinical-evaluator.md
+      description: Clinical Evaluator for clinical validation and evidence
+
+    - id: quality-manager
+      name: Quentin
+      file: agents/quality-manager.md
+      description: Quality Manager for IEC 62304 and QMS compliance
+
+    - id: cybersec-officer
+      name: SecureMax
+      file: agents/cybersec-officer.md
+      description: Cybersecurity Officer for medical device security
+
+  workflows:
+    - id: regulatory-scoping
+      name: Regulatory Scoping
+      file: workflows/regulatory-scoping/workflow.md
+      description: Define target markets and regulatory pathway
+      phase: 1
+      gate: R1
+
+    - id: samd-classification
+      name: SaMD Classification
+      file: workflows/samd-classification/workflow.md
+      description: Classify device per IMDRF, FDA, and MDR
+      phase: 1
+      gate: R1
+
+    - id: risk-management-cycle
+      name: Risk Management Cycle
+      file: workflows/risk-management-cycle/workflow.md
+      description: ISO 14971 hazard analysis and risk control
+      phase: 2
+      gate: R2
+
+    - id: prd-regulatory-enrichment
+      name: PRD Regulatory Enrichment
+      file: workflows/prd-regulatory-enrichment/workflow.md
+      description: Add regulatory requirements to PRD
+      phase: 2
+      gate: R2
+
+    - id: architecture-safety-review
+      name: Architecture Safety Review
+      file: workflows/architecture-safety-review/workflow.md
+      description: IEC 62304 architecture and security review
+      phase: 2
+      gate: R2
+
+    - id: clinical-validation
+      name: Clinical Validation
+      file: workflows/clinical-validation/workflow.md
+      description: Design clinical validation protocol
+      phase: 3
+      gate: R3
+
+    - id: story-regulatory-gate
+      name: Story Regulatory Gate
+      file: workflows/story-regulatory-gate/workflow.md
+      description: Pre/post implementation regulatory checks
+      phase: 3
+      gate: R3
+
+    - id: design-history-assembly
+      name: Design History Assembly
+      file: workflows/design-history-assembly/workflow.md
+      description: Compile Design History File (DHF)
+      phase: 4
+      gate: R4
+
+    - id: submission-package
+      name: Submission Package
+      file: workflows/submission-package/workflow.md
+      description: Prepare regulatory submission (510k/CE)
+      phase: 4
+      gate: R4
+
+  templates:
+    - id: intended-use
+      file: templates/intended-use.md
+      description: Intended Use / Purpose statement template
+
+    - id: hazard-analysis-fmea
+      file: templates/hazard-analysis-fmea.md
+      description: FMEA-based hazard analysis template
+
+    - id: traceability-matrix
+      file: templates/traceability-matrix.md
+      description: Requirements traceability matrix
+
+    - id: regulatory-story-addendum
+      file: templates/regulatory-story-addendum.md
+      description: Story-level regulatory addendum
+
+    - id: soup-evaluation
+      file: templates/soup-evaluation.md
+      description: SOUP (Software of Unknown Provenance) evaluation
+
+  checklists:
+    - id: iec-62304-phase-gate
+      file: checklists/iec-62304-phase-gate.md
+      description: IEC 62304 phase gate checklist
+
+    - id: story-regulatory-compliance
+      file: checklists/story-regulatory-compliance.md
+      description: Story-level compliance checklist
+
+    - id: release-readiness-md
+      file: checklists/release-readiness-md.md
+      description: Medical device release readiness
+
+    - id: ai-ml-validation-checklist
+      file: checklists/ai-ml-validation-checklist.md
+      description: AI/ML model validation checklist
+
+  policies:
+    - id: soup-governance
+      file: policies/soup-governance-policy.md
+      description: SOUP management policy
+
+    - id: ai-assisted-dev
+      file: policies/ai-assisted-dev-policy.md
+      description: AI-assisted development policy
+
+    - id: patient-data
+      file: policies/patient-data-policy.md
+      description: Patient data handling policy
+
+    - id: clinical-threshold
+      file: policies/clinical-threshold-policy.md
+      description: Clinical significance thresholds
+
+# Installation configuration
+install:
+  targetPath: bmmd
+  mergeConfig: true
+
+  prompts:
+    - id: target_markets
+      type: multiselect
+      message: "Select target regulatory markets:"
+      choices:
+        - { value: "fda", label: "FDA (United States)", default: true }
+        - { value: "mdr", label: "EU MDR (European Union)", default: true }
+        - { value: "mhra", label: "MHRA (United Kingdom)", default: false }
+        - { value: "tga", label: "TGA (Australia)", default: false }
+        - { value: "health-canada", label: "Health Canada", default: false }
+
+    - id: device_class
+      type: select
+      message: "Expected SaMD classification level:"
+      choices:
+        - { value: "class-i", label: "Class I / Low Risk" }
+        - { value: "class-ii", label: "Class II / Moderate Risk", default: true }
+        - { value: "class-iii", label: "Class III / High Risk" }
+
+    - id: ai_ml_enabled
+      type: confirm
+      message: "Does your SaMD include AI/ML components?"
+      default: false
+
+# Manifest generation rules
+manifest:
+  workflows:
+    file: workflow-manifest.csv
+    columns: [code, name, description, phase, primary_agent, supporting_agents]
+
+  agents:
+    file: agent-manifest.csv
+    columns: [code, name, specialty, module]

@@ -1,0 +1,40 @@
+# BMMD Module Configuration
+module:
+  id: bmmd
+  name: "Medical Device"
+  version: "1.0.0"
+  description: >
+    Medical Device extension for BMAD-METHOD. Adds regulatory compliance
+    agents, workflows, templates, and policies for IEC 62304, ISO 14971,
+    ISO 13485, FDA, and CE MDR compliance.
+  compatibility: "bmad-method >= 6.0.0"
+  requires:
+    - bmm  # BMAD Method Module (core agents)
+
+  agents:
+    - regulatory-affairs
+    - risk-manager
+    - clinical-evaluator
+    - quality-manager
+    - cybersec-officer
+
+  enriches:
+    # These BMM agents get medical device overrides via customize files
+    - bmm-analyst
+    - bmm-pm
+    - bmm-architect
+    - bmm-dev
+    - bmm-sm
+    - bmm-quinn
+
+  standards:
+    - "IEC 62304:2006+A1:2015"
+    - "ISO 14971:2019"
+    - "ISO 13485:2016"
+    - "IEC 82304-1:2016"
+    - "IEC 81001-5-1 (Cybersecurity)"
+    - "FDA 21 CFR Part 820"
+    - "FDA SaMD Guidance"
+    - "FDA AI/ML Action Plan"
+    - "MDR 2017/745"
+    - "IMDRF SaMD N41"
