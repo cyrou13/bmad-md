@@ -41,6 +41,37 @@ npm install -g bmad-md
 bmad-md install
 ```
 
+### What Gets Installed
+
+The installer will:
+- Copy 10 specialized agents to `_bmad/bmmd/agents/`
+- Install 11 regulatory workflows
+- Create document templates and checklists
+- Generate Claude Code commands in `.claude/commands/`
+
+After installation, agents are accessible via `/bmad-agent-bmmd-*` commands in Claude Code.
+
+## Using the Agents
+
+### In Claude Code
+
+After installation, invoke agents using the slash commands:
+
+```
+/bmad-agent-bmmd-regulatory-affairs   # Launch Dr. Régis
+/bmad-agent-bmmd-risk-manager         # Launch Dr. Hana
+/bmad-agent-bmmd-clinical-evaluator   # Launch Dr. Claire
+/bmad-agent-bmmd-quality-manager      # Launch Quentin
+/bmad-agent-bmmd-cybersec-officer     # Launch SecureMax
+/bmad-agent-bmmd-pms-officer          # Launch Dr. Vigil
+/bmad-agent-bmmd-human-factors        # Launch Prof. Didac
+/bmad-agent-bmmd-data-governance      # Launch Daria
+/bmad-agent-bmmd-biostatistician      # Launch Dr. Gauss
+/bmad-agent-bmmd-ai-ethics            # Launch Dr. Aequitas
+```
+
+Each agent will present an interactive menu with specialized workflows and templates.
+
 ## Specialized Agents
 
 ### Core Regulatory Agents
