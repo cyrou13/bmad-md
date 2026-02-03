@@ -14,3 +14,15 @@ question_pattern,answer,agent_suggestion
 "dhr","Use @regulatory-affairs /dhr to assemble the Design History Record.",regulatory-affairs
 "story check","Use @quality-manager /story-check before and after implementing a story.",quality-manager
 "ai validation","Use @clinical-evaluator /ai-validation for AI/ML specific validation (robustness, fairness, OOD).",clinical-evaluator
+"pms","Use @pms-officer (Dr. Vigil) for Post-Market Surveillance Plan, PMCF, and vigilance.",pms-officer
+"pmcf","Use @pms-officer /pmcf to create or update the Post-Market Clinical Follow-up Plan.",pms-officer
+"psur","Use @pms-officer /psur to prepare the Periodic Safety Update Report.",pms-officer
+"vigilance","Use @pms-officer /vigilance to evaluate and report an incident.",pms-officer
+"drift","Use @pms-officer /drift-analysis to analyze AI/ML performance drift signals.",pms-officer
+"performance monitoring","Use @pms-officer /performance-monitor to configure SaMD AI monitoring.",pms-officer
+"ifu","Use @human-factors (Prof. Didac) /ifu to draft or review Instructions For Use.",human-factors
+"usability","Use @human-factors for IEC 62366-1 usability engineering process.",human-factors
+"formative","Use @human-factors /formative to plan a formative usability evaluation.",human-factors
+"summative","Use @human-factors /summative to plan a summative usability evaluation.",human-factors
+"training","Use @human-factors /training to design user training programs.",human-factors
+"human factors","Use @human-factors (Prof. Didac) for IEC 62366, IFU, and usability evaluations.",human-factors

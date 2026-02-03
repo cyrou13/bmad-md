@@ -11,8 +11,10 @@ BMAD Medical Device (BMMD) extends the [BMAD Method](https://github.com/bmad-cod
 
 - **IEC 62304** - Medical device software lifecycle
 - **ISO 14971** - Application of risk management to medical devices
+- **IEC 62366-1** - Usability engineering for medical devices
 - **FDA 21 CFR Part 820** - Quality System Regulation
-- **EU MDR 2017/745** - Medical Device Regulation
+- **FDA 21 CFR Part 803/806** - Medical Device Reporting & Corrections
+- **EU MDR 2017/745** - Medical Device Regulation (including PMS/PMCF)
 - **IMDRF SaMD** - Software as a Medical Device classification
 
 ## Prerequisites
@@ -139,7 +141,30 @@ The BMMD workflow integrates with standard BMAD phases:
 
 ![BMAD-MD Workflow](docs/bmad-md-workflow-greenfield.png)
 
-The workflow covers the complete SaMD lifecycle from initial brainstorming through regulatory submission and post-market surveillance.
+### Full Lifecycle Overview (including Post-Market)
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│                           BMAD-MD Full SaMD Lifecycle                                 │
+├─────────────┬─────────────┬─────────────────┬─────────────────┬──────────────────────┤
+│   Phase 1   │   Phase 2   │     Phase 3     │     Phase 4     │       Phase 5        │
+│  Discovery  │  Definition │   Development   │    Delivery     │    Post-Market       │
+├─────────────┼─────────────┼─────────────────┼─────────────────┼──────────────────────┤
+│ Brainstorm  │ PRD-MD      │ Story Reg Gate  │ DHF Assembly    │ PMS Plan (Art. 84)   │
+│ Research    │ Risk Mgmt   │ Clinical Valid  │ Submission Pkg  │ PMCF (Art. 61)       │
+│ Brief       │ Arch Review │ Story Cycles    │ 510(k)/CE File  │ PSUR (Art. 86)       │
+│ Reg Scope   │ Usability   │ Usability Eval  │                 │ Vigilance            │
+│ SaMD Class  │ IFU Draft   │                 │                 │ AI Perf Monitoring   │
+├─────────────┼─────────────┼─────────────────┼─────────────────┼──────────────────────┤
+│     R1      │     R2      │       R3        │       R4        │     Continuous       │
+├─────────────┴─────────────┴─────────────────┴─────────────────┴──────────────────────┤
+│  Agents: Dr. Régis, Dr. Hana, Dr. Claire, Quentin, SecureMax, Dr. Vigil, Prof. Didac │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+**Phase 5 - Post-Market** is critical for MDR compliance and includes:
+- **Dr. Vigil**: PMS Plan, PMCF, PSUR, Vigilance reporting, AI/ML performance monitoring
+- **Prof. Didac**: IFU maintenance, user training updates, usability feedback integration
 
 ## CLI Commands
 
@@ -159,11 +184,19 @@ npx bmad-md uninstall
 
 BMMD workflows complement the core BMAD Method (BMM) workflows:
 
+### Pre-Market (Phases 1-4)
 1. **Mary's Discovery** (BMM) → **Regulatory Scoping** (BMMD)
 2. **Product Brief** (BMM) → **SaMD Classification** (BMMD)
 3. **PRD Creation** (BMM) → **PRD Regulatory Enrichment** (BMMD)
 4. **Architecture** (BMM) → **Architecture Safety Review** (BMMD)
 5. **Story Development** (BMM) → **Story Regulatory Gate** (BMMD)
+6. **UX Design** (BMM) → **Usability Engineering** (BMMD)
+
+### Post-Market (Phase 5 - Continuous)
+7. **Release** → **Post-Market Surveillance Plan** activation
+8. **Production Monitoring** → **AI Performance Monitoring** (drift, decay)
+9. **Customer Feedback** → **Vigilance & PMCF** integration
+10. **Periodic Reviews** → **PSUR** generation
 
 ## License
 
