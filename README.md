@@ -41,6 +41,7 @@ bmad-md install
 
 ## Specialized Agents
 
+### Core Regulatory Agents
 | Agent | Code | Specialty |
 |-------|------|-----------|
 | **Dr. Régis** | regis | Regulatory Affairs Specialist (FDA, CE, MDR) |
@@ -48,6 +49,15 @@ bmad-md install
 | **Dr. Claire** | claire | Clinical Evaluator |
 | **Quentin** | quentin | Quality Manager (IEC 62304, QMS) |
 | **SecureMax** | securemax | Cybersecurity Officer |
+| **Dr. Vigil** | vigil | Post-Market Surveillance (PMS, PMCF, Vigilance) |
+| **Prof. Didac** | didac | Human Factors & Training (IEC 62366, IFU) |
+
+### AI/ML Extension Agents
+| Agent | Code | Specialty |
+|-------|------|-----------|
+| **Daria** | daria | Data Governance Officer |
+| **Dr. Gauss** | gauss | Biostatistician |
+| **Dr. Aequitas** | aequitas | AI Ethics & Fairness Officer |
 
 ## Regulatory Workflows
 
@@ -67,6 +77,10 @@ bmad-md install
 ### Phase 4 - Delivery (Gate R4)
 - `/design-history-assembly` - Compile Design History File (DHF)
 - `/submission-package` - Prepare regulatory submission (510(k), CE Technical File)
+
+### Phase 5 - Post-Market (Continuous)
+- `/post-market-surveillance` - PMS Plan, PMCF, PSUR, Vigilance
+- `/usability-engineering` - IEC 62366-1 process, formative/summative evaluations
 
 ## Templates Included
 
@@ -104,11 +118,15 @@ After installation, BMMD creates the following structure:
     │   ├── risk-manager.md
     │   ├── clinical-evaluator.md
     │   ├── quality-manager.md
-    │   └── cybersec-officer.md
+    │   ├── cybersec-officer.md
+    │   ├── post-market-surveillance.md
+    │   └── human-factors.md
     ├── workflows/            # Regulatory workflows
     │   ├── regulatory-scoping/
     │   ├── samd-classification/
     │   ├── risk-management-cycle/
+    │   ├── post-market-surveillance/
+    │   ├── usability-engineering/
     │   └── ...
     ├── templates/            # Document templates
     ├── checklists/           # Compliance checklists
@@ -120,20 +138,20 @@ After installation, BMMD creates the following structure:
 The BMMD workflow integrates with standard BMAD phases:
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    BMAD-MD Standard Greenfield                   │
-├────────────┬────────────┬────────────────────┬──────────────────┤
-│  Phase 1   │  Phase 2   │      Phase 3       │     Phase 4      │
-│  Discovery │ Definition │    Development     │    Delivery      │
-├────────────┼────────────┼────────────────────┼──────────────────┤
-│ Brainstorm │ PRD-MD     │ Story Reg Gate     │ DHF Assembly     │
-│ Research   │ Risk Mgmt  │ Clinical Valid     │ Submission Pkg   │
-│ Brief      │ Arch Review│ Story Cycles       │                  │
-│ Reg Scope  │            │                    │                  │
-│ SaMD Class │            │                    │                  │
-├────────────┼────────────┼────────────────────┼──────────────────┤
-│    R1      │    R2      │        R3          │       R4         │
-└────────────┴────────────┴────────────────────┴──────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                           BMAD-MD Full Lifecycle                                  │
+├────────────┬────────────┬────────────────────┬──────────────────┬────────────────┤
+│  Phase 1   │  Phase 2   │      Phase 3       │     Phase 4      │    Phase 5     │
+│  Discovery │ Definition │    Development     │    Delivery      │  Post-Market   │
+├────────────┼────────────┼────────────────────┼──────────────────┼────────────────┤
+│ Brainstorm │ PRD-MD     │ Story Reg Gate     │ DHF Assembly     │ PMS/PMCF       │
+│ Research   │ Risk Mgmt  │ Clinical Valid     │ Submission Pkg   │ PSUR           │
+│ Brief      │ Arch Review│ Story Cycles       │                  │ Vigilance      │
+│ Reg Scope  │ Usability  │ Usability Eval     │                  │ Perf Monitor   │
+│ SaMD Class │ IFU Draft  │                    │                  │ Feedback Loop  │
+├────────────┼────────────┼────────────────────┼──────────────────┼────────────────┤
+│    R1      │    R2      │        R3          │       R4         │   Continuous   │
+└────────────┴────────────┴────────────────────┴──────────────────┴────────────────┘
 ```
 
 ## CLI Commands

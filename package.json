@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "bmad-md",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "BMAD Medical Device Module - SaMD regulatory compliance extension for BMAD Method",
   "keywords": [
     "bmad",

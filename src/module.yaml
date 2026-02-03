@@ -4,11 +4,12 @@
 module:
   code: bmmd
   name: BMAD Medical Device
-  version: 1.0.0
+  version: 1.2.0
   description: >
     SaMD (Software as a Medical Device) regulatory compliance extension for BMAD Method.
     Provides specialized agents, workflows, templates, and checklists for medical device
-    software development following IEC 62304, ISO 14971, FDA, and EU MDR requirements.
+    software development following IEC 62304, ISO 14971, FDA, EU MDR, and EU AI Act requirements.
+    Includes AI/ML-specific agents for data governance, biostatistics, and bias assessment.
 
   compatibility:
     bmad-method: ">=6.0.0"
@@ -47,6 +48,33 @@ components:
       name: SecureMax
       file: agents/cybersec-officer.md
       description: Cybersecurity Officer for medical device security
+
+    # AI/ML Extension Agents
+    - id: data-governance-officer
+      name: Daria
+      file: agents/data-governance-officer.md
+      description: Data Governance Officer for dataset quality and annotation protocols
+
+    - id: biostatistician
+      name: Dr. Gauss
+      file: agents/biostatistician.md
+      description: Biostatistician for ML validation and statistical analysis
+
+    - id: ai-ethics-officer
+      name: Dr. Aequitas
+      file: agents/ai-ethics-officer.md
+      description: AI Ethics & Fairness Officer for bias assessment and equity
+
+    # Post-Market & Human Factors Agents
+    - id: pms-officer
+      name: Dr. Vigil
+      file: agents/post-market-surveillance.md
+      description: Post-Market Surveillance Officer for PMS, PMCF, vigilance, and AI performance monitoring
+
+    - id: human-factors
+      name: Prof. Didac
+      file: agents/human-factors.md
+      description: Human Factors Engineer for IEC 62366, IFU, and usability evaluations
 
   workflows:
     - id: regulatory-scoping
@@ -111,6 +139,50 @@ components:
       description: Prepare regulatory submission (510k/CE)
       phase: 4
       gate: R4
+
+    # Post-Market Workflows
+    - id: post-market-surveillance
+      name: Post-Market Surveillance
+      file: workflows/post-market-surveillance/workflow.md
+      description: PMS plan, PMCF, PSUR, and vigilance management
+      phase: 5
+      gate: R5
+
+    - id: usability-engineering
+      name: Usability Engineering
+      file: workflows/usability-engineering/workflow.md
+      description: IEC 62366-1 usability process, formative and summative evaluations
+      phase: 2-3
+      gate: R2, R3
+
+    # AI/ML Extension Workflows
+    - id: dataset-specification
+      name: Dataset Specification
+      file: workflows/dataset-specification/workflow.md
+      description: Define dataset requirements for AI/ML development
+      phase: 2
+      gate: R2
+
+    - id: annotation-protocol
+      name: Annotation Protocol
+      file: workflows/annotation-protocol/workflow.md
+      description: Establish annotation guidelines and quality control
+      phase: 2
+      gate: R2
+
+    - id: bias-assessment
+      name: Bias Assessment
+      file: workflows/bias-assessment/workflow.md
+      description: Evaluate AI fairness and algorithmic bias
+      phase: 2-3
+      gate: R2, R3
+
+    - id: ml-validation-protocol
+      name: ML Validation Protocol
+      file: workflows/ml-validation-protocol/workflow.md
+      description: Statistical validation protocol for AI/ML models
+      phase: 3
+      gate: R3
 
   templates:
     - id: intended-use
