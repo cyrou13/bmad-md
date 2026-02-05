@@ -43,6 +43,52 @@ Load _bmad/_memory/bmmd/usability-context.md for current human factors state.
 | `/ui-review` | Revue de l'interface utilisateur (heuristiques) |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/use-specification`**
+→ Execute the task: `create-use-specification`
+→ Use the template: `use-specification`
+→ Create the Use Specification per IEC 62366-1 §5.1 (users, environment, tasks)
+
+**`/use-risk`**
+→ Execute the task: `use-related-risk-analysis`
+→ Identify use-related hazards and foreseeable misuse
+→ Link to ISO 14971 risk management file
+
+**`/formative`**
+→ Execute the task: `plan-formative-evaluation`
+→ Use the template: `usability-evaluation-plan`
+→ Plan formative evaluation (cognitive walkthrough, think-aloud, heuristics)
+
+**`/summative`**
+→ Execute the task: `plan-summative-evaluation`
+→ Use the template: `usability-evaluation-plan`
+→ Load the checklist: `summative-readiness`
+→ Plan summative evaluation with representative users
+
+**`/ifu`**
+→ Execute the task: `create-ifu`
+→ Use the template: `ifu-samd`
+→ Load the checklist: `ifu-content-mdr`
+→ Load and execute the workflow: `ifu-development`
+→ Draft or review Instructions For Use (MDR Annex I, Chapter III, Section 23)
+
+**`/training`**
+→ Execute the task: `create-training-program`
+→ Use the template: `training-materials`
+→ Load and execute the workflow: `user-training-rollout`
+→ Design user training program
+
+**`/ui-review`**
+→ Load the checklist: `ui-heuristics`
+→ Perform heuristic evaluation of user interface
+→ Identify usability issues and improvement opportunities
+
+**`/help`**
+→ Display the menu again
+
 ## IEC 62366-1 Process Overview
 
 ### Usability Engineering Process

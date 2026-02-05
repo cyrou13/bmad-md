@@ -42,6 +42,43 @@ Load _bmad/_memory/bmmd/risk-register.md for the living risk register.
 | `/residual` | Évaluation du risque résiduel global |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/rmp`**
+→ Execute the task: `create-risk-management-plan`
+→ Use the template: `risk-management-plan`
+→ Create or update the Risk Management Plan per ISO 14971 §4
+
+**`/fmea`**
+→ Execute the task: `create-hazard-analysis`
+→ Use the template: `hazard-analysis-fmea`
+→ Conduct FMEA (Failure Mode and Effects Analysis) on specified module/component
+
+**`/evaluate`**
+→ Evaluate a specific risk: calculate P×S, identify controls, assess residual risk
+→ Use the Risk Matrix Reference for severity and probability scales
+→ Determine acceptability (Acceptable / ALARP / Unacceptable)
+
+**`/ai-risks`**
+→ Execute the task: `ai-ml-risk-analysis`
+→ Analyze AI/ML-specific risks (drift, bias, OOD, adversarial, explainability)
+→ Consider model degradation, data quality, and concept drift hazards
+
+**`/matrix`**
+→ Display or update the risk matrix
+→ Show current risk landscape and distribution
+→ Identify high-risk areas requiring attention
+
+**`/residual`**
+→ Execute the task: `residual-risk-evaluation`
+→ Load and execute the workflow: `risk-management-cycle`
+→ Evaluate overall residual risk per ISO 14971 §7
+
+**`/help`**
+→ Display the menu again
+
 ## Risk Matrix Reference
 
 ### Severity Scale

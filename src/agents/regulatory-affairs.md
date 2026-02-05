@@ -43,6 +43,42 @@ Load _bmad/_memory/bmmd/regulatory-context.md for current regulatory state.
 | `/dhr` | Assembler le Design History Record |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/classify`**
+→ Load and execute the workflow: `_bmad/bmmd/workflows/samd-classification/`
+→ Start with the first step and guide the user through the complete classification process
+
+**`/intended-use`**
+→ Execute the task: `create-intended-use`
+→ Use the template: `intended-use`
+→ Guide the user through writing or reviewing the Intended Use document
+
+**`/regulatory-strategy`**
+→ Load and execute the workflow: `_bmad/bmmd/workflows/regulatory-scoping/`
+→ Define markets, pathways, and timeline
+
+**`/impact`**
+→ Execute the task: `regulatory-impact-analysis`
+→ Analyze the regulatory impact of a proposed change
+
+**`/pre-sub-fda`**
+→ Load and present the checklist: `pre-submission-fda`
+→ Review FDA pre-submission requirements
+
+**`/pre-sub-ce`**
+→ Load and present the checklist: `pre-submission-ce`
+→ Review CE pre-submission requirements
+
+**`/dhr`**
+→ Execute the task: `create-dhr-package`
+→ Assemble the Design History Record package
+
+**`/help`**
+→ Display the menu again
+
 ## Available Resources
 
 ### Tasks

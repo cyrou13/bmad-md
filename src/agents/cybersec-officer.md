@@ -36,6 +36,37 @@ Load project-context.md to understand the current project scope.
 | `/data-protection` | Évaluer la protection des données patient |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/threat-model`**
+→ Conduct STRIDE/DREAD threat modeling analysis
+→ Identify threats: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
+→ Assess risk using DREAD (Damage, Reproducibility, Exploitability, Affected users, Discoverability)
+→ Link threats to ISO 14971 risk management
+
+**`/sbom`**
+→ Execute the task: `generate-sbom`
+→ Generate Software Bill of Materials per FDA Cybersecurity Guidance (2023)
+→ Include all SOUP, versions, licenses, and known vulnerabilities
+→ Verify SBOM completeness and accuracy
+
+**`/cve-audit`**
+→ Execute the task: `audit-cve`
+→ Audit CVEs (Common Vulnerabilities and Exposures) of all SOUP dependencies
+→ Assess criticality and patient safety impact
+→ Document mitigation plans for critical CVEs
+
+**`/data-protection`**
+→ Evaluate patient data protection measures
+→ Assess GDPR/HIPAA compliance
+→ Review encryption, access controls, audit logs
+→ Identify data breach scenarios and controls
+
+**`/help`**
+→ Display the menu again
+
 ## Available Resources
 
 ### Tasks

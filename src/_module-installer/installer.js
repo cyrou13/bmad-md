@@ -7,6 +7,22 @@ const fs = require('fs-extra');
 const path = require('node:path');
 const yaml = require('js-yaml');
 
+// Agent definitions for manifest and command generation
+const BMMD_AGENTS = [
+  // Core Regulatory Agents
+  { id: 'regulatory-affairs', name: 'Dr. Régis', title: 'Regulatory Affairs Specialist', file: 'regulatory-affairs.md' },
+  { id: 'risk-manager', name: 'Dr. Hana', title: 'Risk Manager (ISO 14971)', file: 'risk-manager.md' },
+  { id: 'clinical-evaluator', name: 'Dr. Claire', title: 'Clinical Evaluator', file: 'clinical-evaluator.md' },
+  { id: 'quality-manager', name: 'Quentin', title: 'Quality Manager (IEC 62304)', file: 'quality-manager.md' },
+  { id: 'cybersec-officer', name: 'SecureMax', title: 'Cybersecurity Officer', file: 'cybersec-officer.md' },
+  { id: 'pms-officer', name: 'Dr. Vigil', title: 'Post-Market Surveillance Officer', file: 'post-market-surveillance.md' },
+  { id: 'human-factors', name: 'Prof. Didac', title: 'Human Factors Engineer', file: 'human-factors.md' },
+  // AI/ML Extension Agents
+  { id: 'data-governance', name: 'Daria', title: 'Data Governance Officer', file: 'data-governance-officer.md' },
+  { id: 'biostatistician', name: 'Dr. Gauss', title: 'Biostatistician', file: 'biostatistician.md' },
+  { id: 'ai-ethics', name: 'Dr. Aequitas', title: 'AI Ethics & Fairness Officer', file: 'ai-ethics-officer.md' }
+];
+
 class BmmdInstaller {
   constructor() {
     this.moduleRoot = path.join(__dirname, '..');
@@ -53,7 +69,8 @@ class BmmdInstaller {
       workflows: 0,
       templates: 0,
       checklists: 0,
-      policies: 0
+      policies: 0,
+      commands: 0
     };
 
     // Copy agents
@@ -118,11 +135,14 @@ class BmmdInstaller {
       if (verbose) console.log('  Copied module-help.csv');
     }
 
-    // Update workflow manifest in .bmad
+    // Update workflow manifest in _bmad/_config
     await this.updateWorkflowManifest(bmadDir, verbose);
 
-    // Update agent manifest in .bmad
+    // Update agent manifest in _bmad/_config
     await this.updateAgentManifest(bmadDir, verbose);
+
+    // Generate Claude commands for agents
+    stats.commands = await this.generateClaudeCommands(targetDir, verbose);
 
     return {
       success: true,
@@ -134,7 +154,11 @@ class BmmdInstaller {
    * Update workflow-manifest.csv to include BMMD workflows
    */
   async updateWorkflowManifest(bmadDir, verbose) {
-    const manifestPath = path.join(bmadDir, 'workflow-manifest.csv');
+    // Check both possible locations
+    let manifestPath = path.join(bmadDir, '_config', 'workflow-manifest.csv');
+    if (!fs.existsSync(manifestPath)) {
+      manifestPath = path.join(bmadDir, 'workflow-manifest.csv');
+    }
 
     if (!fs.existsSync(manifestPath)) {
       if (verbose) console.log('  No workflow-manifest.csv found, skipping manifest update');
@@ -160,7 +184,9 @@ architecture-safety-review,Architecture Safety Review,IEC 62304 safety and secur
 clinical-validation,Clinical Validation,Design clinical validation protocol,3,bmmd/workflows/clinical-validation/workflow.md
 story-regulatory-gate,Story Regulatory Gate,Pre/post implementation checks,3,bmmd/workflows/story-regulatory-gate/workflow.md
 design-history-assembly,Design History Assembly,Compile Design History File,4,bmmd/workflows/design-history-assembly/workflow.md
-submission-package,Submission Package,Prepare regulatory submission,4,bmmd/workflows/submission-package/workflow.md`;
+submission-package,Submission Package,Prepare regulatory submission,4,bmmd/workflows/submission-package/workflow.md
+post-market-surveillance,Post-Market Surveillance,PMS Plan PMCF PSUR Vigilance,5,bmmd/workflows/post-market-surveillance/workflow.md
+usability-engineering,Usability Engineering,IEC 62366-1 formative summative,5,bmmd/workflows/usability-engineering/workflow.md`;
 
     content = content.trimEnd() + '\n' + bmmdWorkflows + '\n';
     fs.writeFileSync(manifestPath, content);
@@ -172,7 +198,11 @@ submission-package,Submission Package,Prepare regulatory submission,4,bmmd/workf
    * Update agent-manifest.csv to include BMMD agents
    */
   async updateAgentManifest(bmadDir, verbose) {
-    const manifestPath = path.join(bmadDir, 'agent-manifest.csv');
+    // Check both possible locations
+    let manifestPath = path.join(bmadDir, '_config', 'agent-manifest.csv');
+    if (!fs.existsSync(manifestPath)) {
+      manifestPath = path.join(bmadDir, 'agent-manifest.csv');
+    }
 
     if (!fs.existsSync(manifestPath)) {
       if (verbose) console.log('  No agent-manifest.csv found, skipping manifest update');
@@ -187,19 +217,60 @@ submission-package,Submission Package,Prepare regulatory submission,4,bmmd/workf
       return;
     }
 
-    // BMMD agent entries
+    // Build agent entries from BMMD_AGENTS
+    const agentLines = BMMD_AGENTS.map(agent =>
+      `${agent.id},${agent.name},${agent.title},bmmd/agents/${agent.file}`
+    ).join('\n');
+
     const bmmdAgents = `
 # BMMD - Medical Device Specialist Agents
-regis,Dr. Régis,Regulatory Affairs Specialist,bmmd/agents/regulatory-affairs.md
-hana,Dr. Hana,Risk Manager (ISO 14971),bmmd/agents/risk-manager.md
-claire,Dr. Claire,Clinical Evaluator,bmmd/agents/clinical-evaluator.md
-quentin,Quentin,Quality Manager (IEC 62304),bmmd/agents/quality-manager.md
-securemax,SecureMax,Cybersecurity Officer,bmmd/agents/cybersec-officer.md`;
+${agentLines}`;
 
     content = content.trimEnd() + '\n' + bmmdAgents + '\n';
     fs.writeFileSync(manifestPath, content);
 
     if (verbose) console.log('  Updated agent-manifest.csv');
+  }
+
+  /**
+   * Generate Claude Code commands for BMMD agents
+   */
+  async generateClaudeCommands(targetDir, verbose) {
+    // Create .claude/commands directory if it doesn't exist
+    const commandsDir = path.join(targetDir, '.claude', 'commands');
+    fs.ensureDirSync(commandsDir);
+
+    let commandCount = 0;
+
+    for (const agent of BMMD_AGENTS) {
+      const commandFile = path.join(commandsDir, `bmad-agent-bmmd-${agent.id}.md`);
+
+      const commandContent = `---
+name: '${agent.id}'
+description: '${agent.id} agent'
+disable-model-invocation: true
+---
+
+You must fully embody this agent's persona and follow all activation instructions exactly as specified. NEVER break character until given an exit command.
+
+<agent-activation CRITICAL="TRUE">
+1. LOAD the FULL agent file from {project-root}/_bmad/bmmd/agents/${agent.file}
+2. READ its entire contents - this contains the complete agent persona, menu, and instructions
+3. FOLLOW every step in the <activation> section precisely
+4. DISPLAY the welcome/greeting as instructed
+5. PRESENT the numbered menu
+6. WAIT for user input before proceeding
+</agent-activation>
+`;
+
+      fs.writeFileSync(commandFile, commandContent);
+      commandCount++;
+
+      if (verbose) console.log(`  Created command: bmad-agent-bmmd-${agent.id}.md`);
+    }
+
+    if (verbose) console.log(`  Generated ${commandCount} Claude commands`);
+    return commandCount;
   }
 }
 

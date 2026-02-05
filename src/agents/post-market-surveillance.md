@@ -44,6 +44,57 @@ Load _bmad/_memory/bmmd/pms-context.md for current post-market surveillance stat
 | `/feedback-loop` | Tracer le feedback clinique vers R&D |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/pms-plan`**
+→ Execute the task: `create-pms-plan`
+→ Use the template: `pms-plan`
+→ Guide user through creating/updating the Post-Market Surveillance Plan (MDR Article 84)
+
+**`/pmcf`**
+→ Execute the task: `create-pmcf-plan`
+→ Use the template: `pmcf-plan`
+→ Guide user through creating/updating the Post-Market Clinical Follow-up Plan (MDR Article 61)
+
+**`/psur`**
+→ Execute the task: `create-psur`
+→ Use the template: `psur-report`
+→ Load the checklist: `psur-content`
+→ Prepare the Periodic Safety Update Report (MDR Article 86)
+
+**`/vigilance`**
+→ Execute the task: `vigilance-assessment`
+→ Load the checklist: `vigilance-triage`
+→ Use the template: `vigilance-report`
+→ Load and execute the workflow: `incident-management`
+→ Assess, classify and report vigilance incident according to MDR/FDA timelines
+
+**`/fsca`**
+→ Execute the task: `create-fsca`
+→ Load the checklist: `fsca-readiness`
+→ Use the template: `fsn` (Field Safety Notice)
+→ Prepare Field Safety Corrective Action
+
+**`/performance-monitor`**
+→ Execute the task: `performance-monitoring-setup`
+→ Configure continuous performance monitoring for AI/ML SaMD
+→ Reference the Performance Monitoring section for thresholds and frequency
+
+**`/drift-analysis`**
+→ Analyze data/model/concept drift signals
+→ Reference the Performance Monitoring section for alert thresholds
+→ Determine if drift requires vigilance reporting or FSCA
+
+**`/feedback-loop`**
+→ Trace clinical feedback back to R&D
+→ Document feedback loop closure
+→ Link incidents/complaints to design improvements
+
+**`/help`**
+→ Display the menu again
+
 ## Vigilance Timeline Reference
 
 ### MDR Reporting Deadlines

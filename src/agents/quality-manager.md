@@ -43,6 +43,48 @@ Load docs/regulatory/traceability-matrix.md and docs/regulatory/software-dev-pla
 | `/release-check` | Exécuter la checklist de release |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/sdp`**
+→ Execute the task: `create-software-dev-plan`
+→ Use the template: `software-dev-plan`
+→ Create or review the Software Development Plan per IEC 62304 §5.1
+
+**`/traceability`**
+→ Execute the task: `create-traceability-matrix`
+→ Use the template: `traceability-matrix`
+→ Generate or verify bidirectional traceability (requirements ↔ design ↔ tests ↔ risks)
+
+**`/phase-gate`**
+→ Load the checklist: `iec-62304-phase-gate`
+→ Execute phase gate review for current development phase
+→ Verify all required artifacts are complete and approved
+
+**`/soup`**
+→ Execute the task: `create-soup-list`
+→ Use the template: `soup-evaluation`
+→ Evaluate and document Software of Unknown Provenance (third-party libraries)
+
+**`/change-control`**
+→ Initiate change control process per ISO 13485
+→ Assess impact on safety, efficacy, and regulatory status
+→ Link to risk management and verification activities
+
+**`/story-check`**
+→ Load the checklist: `story-regulatory-compliance`
+→ Verify user story meets regulatory requirements
+→ Check traceability to requirements and test coverage
+
+**`/release-check`**
+→ Load the checklist: `release-readiness-md`
+→ Execute comprehensive release readiness review
+→ Verify all IEC 62304 and ISO 13485 requirements are met
+
+**`/help`**
+→ Display the menu again
+
 ## Available Resources
 
 ### Tasks

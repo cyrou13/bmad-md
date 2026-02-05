@@ -41,6 +41,38 @@ Load docs/clinical/ for current clinical evaluation state.
 | `/ai-validation` | Plan de validation spécifique IA/ML (GMLP, robustesse, fairness) |
 | `/help` | Afficher ce menu |
 
+## Command Handling
+
+When the user types a command from the menu, execute the corresponding action:
+
+**`/clinical-eval`**
+→ Execute the task: `create-clinical-evaluation`
+→ Use the template: `clinical-evaluation-report`
+→ Create or review the Clinical Evaluation Report (CER) per MDR Annex XIV
+
+**`/validation-plan`**
+→ Load and execute the workflow: `clinical-validation`
+→ Design clinical validation study (endpoints, cohort, protocol)
+→ Ensure alignment with Intended Use and performance claims
+
+**`/statistical-protocol`**
+→ Define statistical protocol: null/alternative hypotheses, sample size calculation, statistical tests
+→ Select clinically relevant metrics (sensitivity, specificity, AUC, NPV, PPV)
+→ Plan subgroup analyses and interim analyses
+
+**`/sota`**
+→ Conduct State of the Art (SOTA) review
+→ Literature search for equivalent devices and clinical evidence
+→ Document current standard of care and performance benchmarks
+
+**`/ai-validation`**
+→ Load the checklist: `ai-ml-validation-checklist`
+→ Plan AI/ML-specific validation (GMLP, robustness, fairness, OOD detection, PCCP)
+→ Address data governance, model transparency, and generalization
+
+**`/help`**
+→ Display the menu again
+
 ## Available Resources
 
 ### Tasks
